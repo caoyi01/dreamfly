@@ -24,7 +24,6 @@ public class ADManager
 
     public ADManager()
     {
-
     }
 
     public void init(Application app, String aId, String sId, XXListener listener)
