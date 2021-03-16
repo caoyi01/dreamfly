@@ -1,7 +1,17 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.android.internal.version-check'
-apply plugin: 'com.github.dcendents.android-maven'
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+    maven { url "https://jitpack.io" }
+}
+
 group='com.github.caoyi01'//com.github.{你的的账号名}
+version = '1.0'
 
 android {
     compileSdkVersion 30
@@ -48,4 +58,18 @@ dependencies {
 
     api (name: 'adLib_1_23', ext: 'aar')
     api (name: 'adLib_2_4.6.0', ext: 'aar')
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.caoyi01'
+                artifactId = 'dreamfly'
+                version = 'v1.1.0'
+            }
+        }
+    }
 }
